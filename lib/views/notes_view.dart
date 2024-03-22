@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ntoes_app/views/widgets/ntoes_view_body.dart';
 
 class NotesView extends StatelessWidget 
 {
@@ -7,6 +8,9 @@ class NotesView extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return Container();
+    return Scaffold
+    (
+      body: NotesViewBody(),
+    );
   }
 }
