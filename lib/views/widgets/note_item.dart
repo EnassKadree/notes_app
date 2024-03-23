@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ntoes_app/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget 
 {
@@ -12,61 +13,68 @@ class NoteItem extends StatelessWidget
     return Padding
     (
       padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Container
+      child: InkWell
       (
-        decoration: BoxDecoration
+        onTap: ()
+        {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const EditNotView()));
+        },
+        child: Container
         (
-          color: const Color(0xfffecd7e),
-          borderRadius: BorderRadius.circular(16)
-        ),
-        child: Padding
-        (
-          padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
-          child: Column
+          decoration: BoxDecoration
           (
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: 
-            [
-              ListTile
-              (
-                title: const Text
+            color: const Color(0xfffecd7e),
+            borderRadius: BorderRadius.circular(16)
+          ),
+          child: Padding
+          (
+            padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
+            child: Column
+            (
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: 
+              [
+                ListTile
                 (
-                  'Flutter Tips',
-                  style: TextStyle
+                  title: const Text
                   (
-                    color: Colors.black,
-                    fontSize: 24
+                    'Flutter Tips',
+                    style: TextStyle
+                    (
+                      color: Colors.black,
+                      fontSize: 24
+                    ),
                   ),
+                  subtitle: Padding
+                  (
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text
+                    (
+                      'Build you career with tharwat samy', 
+                      style: TextStyle
+                      (
+                        color: Colors.black.withOpacity(.4),
+                        fontSize: 18
+                      )
+                    ),
+                  ),
+                  trailing: IconButton(icon: const Icon(FontAwesomeIcons.trash, color: Colors.black), onPressed: (){},)
                 ),
-                subtitle: Padding
+                Padding
                 (
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.only(right: 16),
                   child: Text
                   (
-                    'Build you career with tharwat samy', 
+                    'May 21,2022', 
                     style: TextStyle
                     (
                       color: Colors.black.withOpacity(.4),
-                      fontSize: 18
-                    )
+                      fontSize: 16
+                    ),
                   ),
-                ),
-                trailing: IconButton(icon: const Icon(FontAwesomeIcons.trash, color: Colors.black), onPressed: (){},)
-              ),
-              Padding
-              (
-                padding: const EdgeInsets.only(right: 16),
-                child: Text
-                (
-                  'May 21,2022', 
-                  style: TextStyle
-                  (
-                    color: Colors.black.withOpacity(.4),
-                    fontSize: 16
-                  ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
