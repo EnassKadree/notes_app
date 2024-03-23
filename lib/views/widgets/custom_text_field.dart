@@ -3,21 +3,23 @@ import 'package:ntoes_app/constants.dart';
 
 class CustomTextField extends StatelessWidget 
 {
-  const CustomTextField({super.key});
+  const CustomTextField({required this.hint, this.maxLines = 1});
+  final String hint; 
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) 
   {
     return TextField
     (
-      
+      maxLines: maxLines,
       decoration: InputDecoration
       (
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(kPrimaryColor),
         hintStyle: const TextStyle(color: kPrimaryColor),
-        hintText: 'Title'
+        hintText: hint
       ),
     );
   }

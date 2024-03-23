@@ -10,14 +10,16 @@ class AddNoteModalBottomSheet extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return Padding
+    return const Padding
     (
-      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
       child: Column
       (
         children: 
         [
-          CustomTextField()
+          CustomTextField(hint: 'Title',),
+          SizedBox(height: 16,),
+          CustomTextField(hint: 'Content', maxLines: 5,),
         ],
       ),
     );
