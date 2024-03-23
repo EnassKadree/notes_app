@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:ntoes_app/views/widgets/custom_text_field.dart';
 
 class AddNoteModalBottomSheet extends StatelessWidget 
 {
@@ -9,6 +10,16 @@ class AddNoteModalBottomSheet extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return Container();
+    return Padding
+    (
+      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+      child: Column
+      (
+        children: 
+        [
+          CustomTextField()
+        ],
+      ),
+    );
   }
 }
