@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ntoes_app/views/widgets/custom_button.dart';
-import 'package:ntoes_app/views/widgets/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:ntoes_app/cubits/add%20note%20cubit/add_note_cubit.dart';
+import 'package:ntoes_app/views/widgets/add_note_form.dart';
 
 class AddNoteModalBottomSheet extends StatelessWidget 
 {
@@ -9,72 +11,31 @@ class AddNoteModalBottomSheet extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return const Padding
+    return BlocConsumer<AddNoteCubit, AddNoteState>
     (
-      padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
-      child: AddNoteForm(),
-    );
-  }
-}
-
-class AddNoteForm extends StatefulWidget 
-{
-  const AddNoteForm({super.key});
-
-  @override
-  State<AddNoteForm> createState() => _AddNoteFormState();
-}
-
-class _AddNoteFormState extends State<AddNoteForm> 
-{
-  final GlobalKey<FormState> formKey = GlobalKey();
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String? title, content;
-  @override
-  Widget build(BuildContext context) 
-  {
-    return Form
-    (
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column
-      (
-        children: 
-        [
-          CustomTextField
+      listener: (context, state) 
+      {
+        if(state is AddNoteFailures)
+        {
+          print('there was an error ${state.errMessage}');
+        }
+        else if(state is AddNotesSuccess)
+        {
+          Navigator.of(context).pop(context);
+        }
+      },
+      builder: (context, state) 
+      {
+        return ModalProgressHUD
+        (
+          inAsyncCall: state is AddNoteLoading ? true : false,
+          child: const Padding
           (
-            hint: 'Title',
-            onSaved: (value)
-            {
-              title = value;
-            },
+            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+            child: AddNoteForm(),
           ),
-          const SizedBox(height: 16,),
-          CustomTextField
-          (
-            hint: 'Content',
-            maxLines: 5,
-            onSaved: (value)
-            {
-              content = value;
-            },
-          ),
-          const Spacer(),
-          CustomButton(title: 'Add', onTap: ()
-          {
-            if(formKey.currentState! .validate())
-            {
-              formKey.currentState!.save();
-            }else
-            {
-              autovalidateMode = AutovalidateMode.always;
-              setState(() {
-                  
-              });
-            }
-          },)
-        ],
-      ),
+        );
+      },
     );
   }
 }
