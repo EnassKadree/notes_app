@@ -6,9 +6,9 @@ sealed class AddNoteState {}
 final class AddNoteInitial extends AddNoteState {}
 final class AddNoteLoading extends AddNoteState {}
 final class AddNotesSuccess extends AddNoteState {}
-final class AddNoteFailures extends AddNoteState 
+final class AddNoteFailure extends AddNoteState 
 {
   final String errMessage;
 
-  AddNoteFailures(this.errMessage);
+  AddNoteFailure(this.errMessage);
 }
