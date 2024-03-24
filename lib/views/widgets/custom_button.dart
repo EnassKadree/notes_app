@@ -3,9 +3,10 @@ import 'package:ntoes_app/constants.dart';
 
 class CustomButton extends StatelessWidget 
 {
-  const CustomButton({required this.title, this.onTap});
+  const CustomButton({required this.title, this.onTap, this.isLoading = false});
   final void Function()? onTap;
   final String title;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) 
@@ -21,9 +22,10 @@ class CustomButton extends StatelessWidget
           borderRadius: BorderRadius.circular(8),
           color: kPrimaryColor
         ),
-        child: Center(child: Padding(
+        child: Center(child: Padding
+        (
           padding: const EdgeInsets.all(6),
-          child: Text(title, style: const TextStyle(color: Colors.black, fontSize: 20),),
+          child: isLoading? const CircularProgressIndicator(color: Colors.black,) : Text(title, style: const TextStyle(color: Colors.black, fontSize: 20),),
         )),
       ),
     );

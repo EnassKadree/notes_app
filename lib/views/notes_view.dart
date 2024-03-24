@@ -16,7 +16,13 @@ class NotesView extends StatelessWidget
       (
         onPressed: ()
         {
-          showModalBottomSheet(context: context, builder: (context) {return const AddNoteModalBottomSheet();});
+          showModalBottomSheet
+          (
+            isScrollControlled: true,
+            
+            context: context, 
+            builder: (context) {return const AddNoteModalBottomSheet();}
+          );
         }, 
         child: const Icon(Icons.add, color: Colors.black,),
       ),
