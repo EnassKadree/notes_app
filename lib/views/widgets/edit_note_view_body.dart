@@ -19,6 +19,17 @@ class EditNoteViewBody extends StatefulWidget
 class _EditNoteViewBodyState extends State<EditNoteViewBody> 
 {
   String? title, content;
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+
+  @override
+  void initState() 
+  {
+    titleController.text = widget.note.title;
+    contentController.text = widget.note.content;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) 
   {
@@ -44,9 +55,9 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody>
             },
           ),
           const SizedBox(height: 32,),
-          CustomTextField(hint: widget.note.title, onChanged: (value) {title = value;},),
+          CustomTextField(hint: widget.note.title, onChanged: (value) {title = value;}, controller: titleController,),
           const SizedBox(height: 16,),
-          CustomTextField(hint: widget.note.content, maxLines: 5,onChanged: (value) {content = value;},),
+          CustomTextField(hint: widget.note.content, maxLines: 5,onChanged: (value) {content = value;},controller: contentController,),
           EditNoteColorsListView(note: widget.note)
         ],
       ),
