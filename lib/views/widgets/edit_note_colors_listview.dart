@@ -3,20 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ntoes_app/constants.dart';
 import 'package:ntoes_app/cubits/add%20note%20cubit/add_note_cubit.dart';
+import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/widgets/color_item.dart';
 
-class ColorsListView extends StatefulWidget 
+class EditNoteColorsListView extends StatefulWidget 
 {
-  const ColorsListView({super.key});
+  const EditNoteColorsListView({super.key, required this.note});
+  final Note note;
 
   @override
-  State<ColorsListView> createState() => _ColorsListViewState();
+  State<EditNoteColorsListView> createState() => _EditNoteColorsListViewState();
 }
 
-class _ColorsListViewState extends State<ColorsListView> 
+class _EditNoteColorsListViewState extends State<EditNoteColorsListView> 
 {
-  int currentIndex = 0;
+  late int currentIndex;
 
+@override
+  void initState() 
+  {
+    currentIndex = kColors.indexOf(Color(widget.note.color));
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) 
   {
@@ -36,7 +44,7 @@ class _ColorsListViewState extends State<ColorsListView>
               onTap: ()
               {
                 currentIndex = index; setState(() { }); 
-                BlocProvider.of<AddNoteCubit>(context).color = kColors[index];
+                widget.note.color = kColors[index].value;
               },
               child: ColorItem(isActive: currentIndex == index, color: kColors[index],)
             );

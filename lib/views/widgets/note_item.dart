@@ -77,7 +77,7 @@ class NoteItem extends StatelessWidget
                     style: TextStyle
                     (
                       color: Colors.black.withOpacity(.4),
-                      fontSize: 16
+                      fontSize: 14
                     ),
                   ),
                 )

@@ -4,6 +4,7 @@ import 'package:ntoes_app/cubits/notes%20cubit/notes_cubit.dart';
 import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/widgets/custom_appbar.dart';
 import 'package:ntoes_app/views/widgets/custom_text_field.dart';
+import 'package:ntoes_app/views/widgets/edit_note_colors_listview.dart';
 
 class EditNoteViewBody extends StatefulWidget 
 {
@@ -44,6 +45,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody>
           CustomTextField(hint: widget.note.title, onChanged: (value) {title = value;},),
           const SizedBox(height: 16,),
           CustomTextField(hint: widget.note.content, maxLines: 5,onChanged: (value) {content = value;},),
+          EditNoteColorsListView(note: widget.note)
         ],
       ),
     );
