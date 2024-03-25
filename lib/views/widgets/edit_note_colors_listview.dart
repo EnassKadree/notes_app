@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ntoes_app/constants.dart';
-import 'package:ntoes_app/cubits/add%20note%20cubit/add_note_cubit.dart';
 import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/widgets/color_item.dart';
 

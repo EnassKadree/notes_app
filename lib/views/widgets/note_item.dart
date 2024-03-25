@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ntoes_app/cubits/notes%20cubit/notes_cubit.dart';
+import 'package:ntoes_app/helper/showSnackBar.dart';
 import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/edit_note_view.dart';
 
@@ -65,7 +66,12 @@ class NoteItem extends StatelessWidget
                   trailing: IconButton
                   (
                     icon: const Icon(FontAwesomeIcons.trash, color: Colors.black), 
-                    onPressed: (){note.delete();  BlocProvider.of<NotesCubit>(context).fetchNotes();},
+                    onPressed: ()
+                    {
+                      note.delete();  
+                      BlocProvider.of<NotesCubit>(context).fetchNotes();
+                      showSnackBar(context, 'Note Deleted Successfully');
+                    },
                   )
                 ),
                 Padding

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ntoes_app/cubits/add%20note%20cubit/add_note_cubit.dart';
 import 'package:ntoes_app/cubits/notes%20cubit/notes_cubit.dart';
+import 'package:ntoes_app/helper/showSnackBar.dart';
 import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/widgets/colors_list_view.dart';
 import 'package:ntoes_app/views/widgets/custom_button.dart';
@@ -74,6 +75,7 @@ class _AddNoteFormState extends State<AddNoteForm>
           date: DateTime.now().toString().substring(0, 10),
           color: Colors.blue.value);
       BlocProvider.of<AddNoteCubit>(context).addNote(note);
+      showSnackBar(context, 'note added successfully');
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ntoes_app/cubits/notes%20cubit/notes_cubit.dart';
+import 'package:ntoes_app/helper/showSnackBar.dart';
 import 'package:ntoes_app/models/note.dart';
 import 'package:ntoes_app/views/widgets/custom_appbar.dart';
 import 'package:ntoes_app/views/widgets/custom_text_field.dart';
@@ -39,6 +40,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody>
               widget.note.save();
               BlocProvider.of<NotesCubit>(context).fetchNotes();
               Navigator.of(context).pop(context);
+              showSnackBar(context, 'Note updated successfully');
             },
           ),
           const SizedBox(height: 32,),
