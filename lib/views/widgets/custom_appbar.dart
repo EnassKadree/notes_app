@@ -3,9 +3,10 @@ import 'package:ntoes_app/views/widgets/custom_search_icon.dart';
 
 class CustomAppBar extends StatelessWidget 
 {
-  const CustomAppBar({required this.title, required this.icon});
+  const CustomAppBar({required this.title, required this.icon, required this.onPressed});
   final String title; 
   final IconData icon;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) 
@@ -16,7 +17,7 @@ class CustomAppBar extends StatelessWidget
       [
         Text(title, style: const TextStyle(fontSize: 28),),
         const Spacer(),
-        CustomSearchIcon(icon: icon)
+        CustomSearchIcon(icon: icon, onPressed: onPressed,)
       ],
     );
   }
